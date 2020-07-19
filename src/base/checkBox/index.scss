@@ -1,0 +1,28 @@
+.checkbox {
+    width: 38px;
+    height: 38px;
+    border-radius: 100%;
+    overflow: hidden;
+    text-align: center;
+    box-sizing: border-box;
+    position: relative;
+    &.uncheck {
+        border: #eee solid 1px;
+    }
+    &.disabled {
+        background: #EBEBEB;
+        border: #eee solid 1px;
+    }
+    &.checked {
+        background: #FF6262;
+    }
+    text {
+        line-height: 38px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 6;
+    }
+}

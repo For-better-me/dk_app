@@ -1,0 +1,405 @@
+page {
+    background: #F5F5F5;
+    color: #333;
+    font-size: 24px;
+}
+
+.shadow_wrap {
+    box-shadow: #dcdcdc 0px 0px 40px 1px;
+}
+
+.black_wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 99;
+}
+
+.bg_arrow {
+    background: url('../img/icon_arrow.png') no-repeat right center;
+    background-size: 0.14rem 0.25rem;
+}
+
+/* 省略号 */
+
+.ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.ellipsis_2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* 向右箭头 */
+
+.common_arrow {
+    background: url(../img/icon_arrow.png) no-repeat right center;
+    background-size: 14rpx 24rpx;
+}
+
+/* 1px边框 */
+
+.border_4 {
+    position: relative;
+    box-sizing: border-box;
+}
+
+.border_4:after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    border: 1px solid #e6e6e6;
+}
+
+.border_top,
+.border_right,
+.border_bottom,
+.border_left {
+    position: relative;
+}
+
+.border_top:after,
+.border_right:after,
+.border_bottom:after,
+.border_left:after {
+    content: "";
+    position: absolute;
+}
+
+.border_top:after {
+    top: 0;
+    left: 0;
+    border-top: 1px solid #e6e6e6;
+    width: 100%;
+}
+
+.border_right:after {
+    top: 0;
+    right: 0;
+    border-right: 1px solid #e6e6e6;
+    height: 100%;
+}
+
+.border_bottom:after {
+    bottom: 0;
+    left: 0;
+    border-bottom: 1px solid #e6e6e6;
+    width: 100%;
+}
+
+.border_left:after {
+    top: 0;
+    left: 0;
+    border-left: 1px solid #e6e6e6;
+    height: 100%;
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5) {
+    .border_4,
+    .border_top,
+    .border_right,
+    .border_bottom,
+    .border_left {
+        position: relative;
+    }
+    .border_4:after,
+    .border_top:after,
+    .border_right:after,
+    .border_bottom:after,
+    .border_left:after {
+        transform: scaleY(0.7);
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2) {
+    .border_4,
+    .border_top,
+    .border_right,
+    .border_bottom,
+    .border_left {
+        position: relative;
+    }
+    .border_4:after,
+    .border_top:after,
+    .border_right:after,
+    .border_bottom:after,
+    .border_left:after {
+        transform: scaleY(0.5);
+    }
+}
+
+.nodata {
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    img {
+        margin-top: 2.8rem;
+        width: 2rem;
+        height: 2rem;
+    }
+    p {
+        font-size: 0.3rem;
+        color: #999;
+        margin-top: 0.6rem;
+    }
+}
+
+.flex-lr {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+}
+
+.pad_lr_20 {
+    padding: 0 20px;
+}
+
+.pad_lr_30 {
+    padding: 0 30px;
+}
+
+.pad_tb_20 {
+    padding: 20px 0;
+}
+
+.pad_tb_30 {
+    padding: 30px 0;
+}
+
+.pad_tb_10 {
+    padding: 10px 0;
+}
+
+.pad-20 {
+    padding: 20px;
+}
+
+.pad-25 {
+    padding: 25px;
+}
+
+.pad-30 {
+    padding: 30px;
+}
+
+.mar-t-10 {
+    margin-top: 10px;
+}
+
+.mar-t-20 {
+    margin-top: 20px;
+}
+
+.mar-t-30 {
+    margin-top: 30px;
+}
+
+.mar-b-10 {
+    margin-bottom: 10px;
+}
+
+.mar-b-20 {
+    margin-bottom: 20px;
+}
+
+.mar-b-30 {
+    margin-bottom: 30px;
+}
+
+.mar-l-10 {
+    margin-left: 10px;
+}
+
+.mar-l-20 {
+    margin-left: 20px;
+}
+
+.mar-l-30 {
+    margin-left: 30px;
+}
+
+.mar-l-4 {
+    margin-left: 4px;
+}
+
+.bor-radius {
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.f-28 {
+    font-size: 28px;
+}
+
+.f-26 {
+    font-size: 26px
+}
+
+.f-24 {
+    font-size: 24px
+}
+
+.f-22 {
+    font-size: 22px
+}
+
+.f-30 {
+    font-size: 30px
+}
+
+.f-32 {
+    font-size: 32px
+}
+
+.f-34 {
+    font-size: 34px
+}
+
+.f-42 {
+    font-size: 42px
+}
+
+.color-3 {
+    color: #333;
+}
+
+.color-6 {
+    color: #666;
+}
+
+.color-9 {
+    color: #999;
+}
+
+.color-red {
+    color: #FF0000;
+}
+
+.color-theme {
+    color: #10E6AC;
+}
+
+.color-fff {
+    color: #fff;
+}
+
+.color-jb {
+    color: rgba(51, 51, 51, 1);
+    background: linear-gradient(45deg, rgba(16, 230, 172, 1) 0%, rgba(28, 212, 212, 1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.align-c {
+    text-align: center;
+}
+
+.align-r {
+    text-align: right;
+}
+
+.btn_wrap {
+    width: 100%;
+    height: 98px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 20px 0px rgba(170, 169, 169, 0.35);
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    button {
+        width: 690px;
+        height: 70px;
+        margin: 14px auto;
+        line-height: 70px;
+        font-size: 32px;
+        color: #fff;
+        background: linear-gradient(45deg, rgba(16, 230, 172, 1), rgba(28, 212, 212, 1));
+        border-radius: 85px;
+        text {
+            margin-right: 10px;
+            line-height: 70px;
+        }
+    }
+}
+
+.block-fixed-b {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 98px;
+    background: #fff;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 20px 0px rgba(170, 169, 169, 0.35);
+    z-index: 66;
+}
+
+.btn-style {
+    width: 200px;
+    height: 70px;
+    background: linear-gradient(45deg, rgba(16, 230, 172, 1), rgba(28, 212, 212, 1));
+    border-radius: 35px;
+    line-height: 70px;
+    color: #fff;
+    padding: 0;
+    margin: 0;
+    font-size: 30px;
+}
+
+.bg-img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.line-h-2 {
+    line-height: 2;
+}
+
+.line-h-1.6 {
+    line-height: 1.6;
+}
+
+.line-h-1.8 {
+    line-height: 1.8;
+}
+
+.line {
+    text-decoration: line-through;
+    text-decoration-line: line-through;
+}
+
+button {
+    padding: 0;
+    margin: 0;
+    &:after,
+    &:before {
+        display: none;
+    }
+}

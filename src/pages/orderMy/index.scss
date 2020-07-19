@@ -1,0 +1,47 @@
+.order_sort {
+    width: 710px;
+    height: 80px;
+    background: linear-gradient(120deg, rgba(16, 230, 172, 1), rgba(63, 178, 232, 1));
+    border-radius: 40px;
+    margin: 20px auto;
+    margin-top: 40px;
+    position: relative;
+    .pay_tit {
+        text {
+            display: block;
+            width: 33.33%;
+            color: #fff;
+            font-size: 30px;
+            text-align: center;
+            line-height: 80px;
+            position: relative;
+            z-index: 6;
+            &.on {
+                color: #333;
+            }
+        }
+    }
+    .bg_title {
+        position: absolute;
+        width: 234px;
+        height: 72px;
+        background: rgba(255, 255, 255, 1);
+        border-radius: 36px;
+        top: 4px;
+        z-index: 1;
+        transition: all ease-in-out 0.4s;
+        &.sort_1{
+            left: 4px;
+        }
+        &.sort_2{
+            left: calc(33.33% + 4px);
+        }
+        &.sort_3{
+            left: 66.6%;
+        }
+    }
+}
+.order_list{
+    margin: 0 20px;
+    height: calc(100vh - 160px);
+}

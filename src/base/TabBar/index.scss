@@ -1,0 +1,43 @@
+.tabbar {
+    width: 750px;
+    height: 96px;
+    background: rgba(255, 255, 255, 1);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: #e6e6e6 solid 1px;
+    z-index: 999;
+    .item{
+        flex-grow: 1;
+        text-align: center;
+        position: relative;
+        &.on{
+            text{
+                color: #10E6AC;
+            }
+        }
+        text{
+            font-size: 20px;
+            display: block;
+            margin-top: 2px;
+        }
+        image{
+            width: 40px;
+            height: 40px;
+        }
+        .dot_count{
+            position: absolute;
+            left: 112px;
+            top: -4px;
+            line-height: 1;
+            font-size: 17px;
+            color: #fff;
+            padding: 4px 8px;
+            background: #FF0000;
+            border-radius: 20px;
+        }
+    }
+}

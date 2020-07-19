@@ -1,0 +1,128 @@
+.bg {
+    width: 690px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 4px 8px 0px rgba(179, 195, 221, 0.3);
+    border-radius: 20px;
+    margin: 20px auto;
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+
+.submit_order {
+    .addr {
+        height: 158px;
+        image {
+            width: 60px;
+            height: 60px;
+            flex-shrink: 0;
+            margin-right: 30px;
+        }
+        .addr_info {
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+    }
+}
+
+.goods_list {
+    padding: 30px 20px;
+    .goods_info {
+        margin-bottom: 40px;
+    }
+    .goods_img {
+        width: 100px;
+        height: 100px;
+        border-radius: 4px;
+        margin-right: 20px;
+        flex-shrink: 0;
+    }
+    .item_goods {
+        flex-grow: 1;
+        height: 100px;
+        text {
+            display: block;
+        }
+    }
+    .goods_count {
+        width: 100px;
+        text-align: right;
+        flex-shrink: 0;
+    }
+}
+
+.remark {
+    padding: 20px;
+    height: 200px;
+    align-items: flex-start;
+    textarea {
+        flex-grow: 1;
+        margin-left: 20px;
+        font-size: 26px;
+        color: #333;
+    }
+}
+
+.layout-body {
+    background: #f5f5f5;
+    padding: 0 !important;
+}
+
+.layout-header {
+    background: #fff !important;
+}
+
+.distribution {
+    display: flex;
+    justify-content: space-between;
+    .type {
+        width: 200px;
+        height: 100%;
+        background: #F5F5F5;
+        flex-shrink: 0;
+        text {
+            font-size: 30px;
+            color: #333;
+            height: 98px;
+            line-height: 98px;
+            text-align: center;
+            display: block;
+            &.on {
+                color: #10E6AC;
+                background: #fff;
+            }
+        }
+    }
+    .options {
+        flex-grow: 1;
+        background: #fff;
+        height: 100%;
+        overflow-y: auto;
+        .options_item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            padding: 0 30px;
+            border-bottom: #E6E6E6 solid 1px;
+            &.on {
+                image {
+                    display: block;
+                }
+                text {
+                    background: linear-gradient(45deg, rgba(16, 230, 172, 1) 0%, rgba(28, 212, 212, 1) 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent
+                }
+            }
+        }
+        text {
+            font-size: 28px;
+            color: #333;
+        }
+        image {
+            width: 33px;
+            height: 33px;
+            display: none;
+        }
+    }
+}

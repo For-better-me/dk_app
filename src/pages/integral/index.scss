@@ -1,0 +1,38 @@
+.integral {}
+
+.integral_sum {
+    width: 690px;
+    height: 240px;
+    position: relative;
+    box-sizing: border-box;
+    padding-top: 56px;
+    padding-left: 50px;
+    margin: 20px auto;
+    .link_more {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+    }
+    text {
+        display: block;
+    }
+    .f-60 {
+        font-size: 60px;
+    }
+}
+
+.integral_item {
+    padding: 20px;
+    width: 690px;
+    height: 150px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px auto;
+    text{
+        display: block;
+    }
+}
