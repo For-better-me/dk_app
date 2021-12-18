@@ -2,26 +2,34 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .num{
-        width: 68px;
+    .num {
+        width: 56px;
         text-align: center;
     }
     .minus,
     .plus {
         width: 36px;
         height: 36px;
-        border-radius: 16px;
-        font-size: 32px;
-        text-align: center;
-        line-height: 32px;
-        box-sizing: border-box;
+        border-radius: 100%;
+        padding: 10px;
+        position: relative;
+        image {
+            width: 36px;
+            height: 36px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
     }
-    .plus {
-        background: linear-gradient(120deg, rgba(16, 230, 172, 1), rgba(63, 178, 232, 1));
-        color: #fff;
-    }
-    .minus {
-        border: 1px solid rgba(36, 208, 197, 1);
-        color: #24D0C5;
-    }
+    // .plus {
+    //     background: linear-gradient(120deg, rgba(16, 230, 172, 1), rgba(63, 178, 232, 1));
+    //     color: #fff;
+    // }
+    // .minus {
+    //     border: 1px solid rgba(36, 208, 197, 1);
+    //     color: #24D0C5;
+    // }
 }

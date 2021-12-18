@@ -16,9 +16,9 @@ class NavItem extends Component<Props> {
 
         return (
             <View className='nav_item' onClick={this.navTo.bind(this, url)}>
-                <View className='flex-center'>
+                <View className='nav_row'>
                     <Image className='nav-icon' src={icon}></Image>
-                    <Text className='f-30 color-3 mar-l-20'>{title}</Text>
+                    <Text className='f-30 color-3'>{title}</Text>
                 </View>
                 <AtIcon value='chevron-right' size='20' color='#999'></AtIcon>
             </View>

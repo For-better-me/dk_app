@@ -19,6 +19,13 @@ export default class UserApi {
             data
         })
     }
+    public static rechargePay(data) {
+        return _http({
+            url: '/api/recharge/balanceCharge',
+            method: 'POST',
+            data
+        })
+    }
     public static IntegralLog(data) {
         return _http({
             url: '/api/Integrallog/getList',
@@ -30,6 +37,27 @@ export default class UserApi {
         return _http({
             url: '/api/Coupon/getList',
             method: 'POST',
+        })
+    }
+    public static CouponAdd(data) {
+        return _http({
+            url: '/api/Coupon/addInfo',
+            method: 'POST',
+            data,
+            loading:false
+        })
+    }
+    public static InviteInfo() {
+        return _http({
+            url: '/api/Invite/info',
+            method: 'POST',
+        })
+    }
+    public static InviteAdd(data) {
+        return _http({
+            url: '/api/Invite/addInfo',
+            method: 'POST',
+            data
         })
     }
 }

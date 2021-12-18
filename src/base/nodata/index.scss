@@ -1,10 +1,15 @@
 .no_data{
     width: 100%;
     text-align: center;
+    margin-top: 230px;
     image{
-        width: 204px;
-        height: 204px;
+        width: 205px;
+        height: 128px;
         display: block;
         margin: 60px auto;
+    }
+    text{
+        font-size: 30px;
+        color: #999;
     }
 }

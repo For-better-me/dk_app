@@ -1,4 +1,4 @@
-  import { ORDERNUM, CARCOUNT ,TAB,CAR_LEN} from './constants'
+  import { ORDERNUM, CARCOUNT ,TAB,CAR_LEN,GOODS_BUYING_LIST,ADDR_ID,DELIVERY_TYPE} from './constants'
 
   export const SetOrderNum = (orderNum) => {
     return {
@@ -22,6 +22,24 @@
     return {
       type: CAR_LEN,
       len
+    }
+  }
+  export const SetGoodsBuying = (list) => {
+    return {
+      type: GOODS_BUYING_LIST,
+      list
+    }
+  }
+  export const SetAddrId = (id) => {
+    return {
+      type: ADDR_ID,
+      id
+    }
+  }
+  export const SetDeliveryType = (val) => {
+    return {
+      type: DELIVERY_TYPE,
+      val
     }
   }
   

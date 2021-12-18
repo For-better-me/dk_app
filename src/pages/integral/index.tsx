@@ -20,14 +20,26 @@ export default class Integral extends Component {
   init() {
     let data = { limit: this.limit, page: this.page }
     UserApi.IntegralLog(data).then(data => {
-      this.setState({ list: data.integral_list, currentIntegral: data.current_integral })
+      let arr = ['积分抵现金', '购买商品',]
+      let list = data.integral_list.map((el, index) => {
+        el.desc = arr[index + 1]
+        return el
+      })
+      this.setState({ list, currentIntegral: data.current_integral })
     })
 
   }
-  linkToMore(){
+  linkToMore() {
     Taro.navigateTo({
-      url:'/pages/integralList/index'
+      url: '/pages/integralList/index'
     })
+  }
+  onShareAppMessage() {
+    return {
+      title: "每味十足",
+      path: '/pages/index/index',  // 自定义的分享路径，点击分享的卡片之后会跳转这里定义的路由
+      imageUrl: '' // 图片路径
+    };
   }
   render() {
     let { currentIntegral, list } = this.state
@@ -43,12 +55,12 @@ export default class Integral extends Component {
         {
           list.map(el => {
             return (
-              <View className='integral_item'  key={el.id}>
+              <View className='integral_item' key={el.id}>
                 <View>
-                  <Text className='f-30 color-3'>购买商品</Text>
-                  <Text className='f-24 color-9 mar-t-20'>时间：2020-06-07  17:52</Text>
+                  <Text className='f-30 color-3'>{el.desc}</Text>
+                  <Text className='f-24 color-9 mar-t-20'>时间：{el.create_time}</Text>
                 </View>
-                <View className='f-30 color-3'>-30</View>
+                <View className={el.type == 2 ? 'f-30 color-red' : 'f-30 color-3'}>{el.type == 2 ? '+' : '-'}{el.integral}</View>
               </View>
             )
           })

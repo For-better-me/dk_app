@@ -10,29 +10,94 @@
     position: relative;
     display: flex;
     justify-content: space-between;
-    .coupon-img{
+    .coupon-img {
         width: 130px;
         height: 161px;
         flex-shrink: 0;
+        position: relative;
+        .dot {
+            width: 19px;
+            height: 19px;
+            background: #E9502E;
+            border-radius: 50%;
+            font-size: 14px;
+            color: #FFFFFF;
+            line-height: 18px;
+            position: absolute;
+            right: 20px;
+            top: 32px;
+            z-index: 66;
+            text-align: center;
+        }
+        .count {
+            font-size: 50px;
+            font-weight: bold;
+            color: #E9502E;
+            position: relative;
+            z-index: 8;
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            letter-spacing: -1px;
+        }
+        .dj-img {
+            width: 97px;
+            height: 29px;
+            position: absolute;
+            bottom: 9px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            z-index: 66;
+        }
+        .bg-img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        .tj {
+            text {
+                font-size: 14px;
+                color: #E9502E;
+                text-align: center;
+                display: block;
+                position: relative;
+                z-index: 2;
+                top: 11px;
+            }
+        }
     }
-    .coupon-info{
+    .coupon-info {
         flex-grow: 1;
         margin-left: 30px;
         position: relative;
-        text{
+        text {
             display: block;
         }
-        .time{
+        .tip {
+            font-size: 26px;
+            color: #999;
+            margin-top: 15px;
+        }
+        .price {
+            font-size: 30px;
+            color: #333;
+        }
+        .time {
+            font-size: 26px;
+            color: #999;
             position: absolute;
             bottom: 0;
         }
     }
-    .icon-overdue{
+    .icon-overdue {
         position: absolute;
         top: 20px;
         right: 20px;
         width: 98px;
         height: 36px;
     }
-
 }

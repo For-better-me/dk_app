@@ -2,7 +2,8 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import './index.scss'
 import { connect } from '@tarojs/redux'
-
+import ShoppingCarApi from '../../apis/shoppingCar'
+import { SetCountCar } from '../../store/actions'
 
 
 const list: any[] = [
@@ -16,7 +17,7 @@ const list: any[] = [
         "iconPath": require("../../assets/img/icon-car.png"),
         "selectedIconPath": require("../../assets/img/icon-car2.png"),
         "text": "购物车",
-        'extra':true
+        'extra': true
     }, {
         "pagePath": "/pages/activity/index",
         "iconPath": require("../../assets/img/icon-activity.png"),
@@ -32,17 +33,26 @@ const list: any[] = [
 
 type PropsDispatchType = {
     countCar: number,
-    tab:number
+    tab: number,
+    setCountCar: (num: number) => any,
+
 }
 type PropsType = {
+    index?:number,
     path?: string
 }
 type IProps = PropsDispatchType & PropsType
 @connect(({ reducer }) => ({
-    countCar:reducer.countCar,
-    tab:reducer.tab
+    countCar: reducer.countCar,
+    tab: reducer.tab
+}), (dispatch) => ({
+    setCountCar(num: number) {
+        dispatch(SetCountCar(num))
+    },
+
+
 }))
-class TabBar extends Component<IProps,{}> {
+class TabBar extends Component<IProps, {}> {
     switchTab(url) {
         Taro.switchTab({
             url
@@ -54,11 +64,11 @@ class TabBar extends Component<IProps,{}> {
                 {
                     list.map((el, i) => {
                         return (
-                            <View className={this.props.tab == i?'item on':'item'} onClick={this.switchTab.bind(this, el.pagePath)} key={i}>
-                                <Image src={this.props.tab == i?el.selectedIconPath:el.iconPath} mode='aspectFit'></Image>
+                            <View className={this.props.index == i ? 'item on' : 'item'} onClick={this.switchTab.bind(this, el.pagePath)} key={i}>
+                                <Image src={this.props.index == i ? el.selectedIconPath : el.iconPath} mode='aspectFit'></Image>
                                 <Text>{el.text}</Text>
                                 {
-                                    el.extra && this.props.countCar>0 ?<View className='dot_count'>{this.props.countCar}</View>:null
+                                    el.extra && this.props.countCar > 0 ? <View className='dot_count'>{this.props.countCar}</View> : null
                                 }
                             </View>
                         )

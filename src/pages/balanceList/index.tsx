@@ -2,6 +2,7 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text, } from '@tarojs/components'
 import './index.scss'
 import UserApi from '../../apis/user'
+import NoData from '../../base/nodata'
 type StateType = {
   list: any[]
 }
@@ -23,7 +24,7 @@ export default class BalanceList extends Component<{}, StateType> {
     let data = { limit: this.limit, page: this.page }
     UserApi.rechargeLog(data).then(data => {
       // 1充值，2商品购买，3商品退款，4项目购买，5项目退款
-      let list = data.map(el => {
+      let list = data.list.map(el => {
         switch (el.type) {
           case 1:
             el.typeDesc = '充值'
@@ -47,6 +48,7 @@ export default class BalanceList extends Component<{}, StateType> {
         return el
       })
       list = this.state.list.concat(list)
+      this.total = data.total_page
       this.setState({ list })
     })
   }
@@ -59,6 +61,13 @@ export default class BalanceList extends Component<{}, StateType> {
       return
     }
     this.init()
+  }
+  onShareAppMessage() {
+    return {
+      title: "每味十足",
+      path: '/pages/index/index',  // 自定义的分享路径，点击分享的卡片之后会跳转这里定义的路由
+      imageUrl: '' // 图片路径
+    };
   }
   render() {
     let list: any[] = this.state.list
@@ -76,6 +85,9 @@ export default class BalanceList extends Component<{}, StateType> {
             </View>
           )
         })}
+        {
+          list.length == 0?<NoData tip='暂无记录'></NoData>:null
+        }
       </View>
     )
   }

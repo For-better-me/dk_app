@@ -4,14 +4,19 @@ export default class CommonApi {
         return _http({
             url: '/api/user/login',
             method: 'POST',
+            data,
+            loading:false
+        })
+    }
+    public static updateUserInfo(data?: {}) {
+        return _http({
+            url: '/api/user/updateUserInfo',
             data
         })
     }
-    public static getUser(data: {}) {
+    public static aboutUs() {
         return _http({
-            url: '/api/user/getUserData',
-            method: 'GET',
-            data
+            url: '/api/about/info',
         })
     }
 }

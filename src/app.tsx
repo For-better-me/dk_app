@@ -5,8 +5,10 @@ import './app.scss'
 import { Provider } from '@tarojs/redux'
 import configStore from './store'
 const store = configStore()
-import CommonApi from './apis/common'
 import ShoppingCarApi from './apis/shoppingCar'
+import UserApi from './apis/user'
+import JTabBar from './base/TabBar'
+
 type PropsType = {
   countCar: number,
   setCountCar: (num: number) => any
@@ -23,12 +25,22 @@ class App extends Component<PropsType, {}> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
+    "permission": {
+      "scope.userLocation": {
+        "desc": "请确认授权"
+      }
+    },
     pages: [
-      'pages/address/index',
       'pages/index/index',
-      'pages/mine/index',
-      'pages/integralList/index',
+      'pages/address/index',
+      'pages/search/index',
       'pages/couponList/index',
+      'pages/activity/index',
+      'pages/login/index',
+      'pages/mine/index',
+      'pages/aboutUs/index',
+      'pages/submitOrder/index',
+      'pages/integralList/index',
       'pages/shoppingCar/index',
       'pages/goodsDetail/index',
       'pages/integral/index',
@@ -37,9 +49,7 @@ class App extends Component<PropsType, {}> {
       'pages/orderDetail/index',
       'pages/orderMy/index',
       'pages/pay/index',
-      'pages/submitOrder/index',
       'pages/addressEdit/index',
-      'pages/activity/index',
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -78,28 +88,21 @@ class App extends Component<PropsType, {}> {
     },
   }
   componentWillMount() {
+    console.log('app is componentWillMount');
     Taro.hideTabBar()
+    
   }
-  componentDidMount() {
-    if (this.$router.params && this.$router.params.invite_user_id) {
-      Taro.setStorageSync('invite_user_id', this.$router.params.invite_user_id)
+  componentDidShow() {
+    console.log('app is componentDidShow');
+    Taro.hideTabBar()
+    if (!Taro.getStorageSync('token')) {
+      Taro.navigateTo({ url: '/pages/login/index' })
     }
-    this.login()
-    this.getCarLen()
-
   }
-  login() {
-    Taro.login({
-      success(res) {
-        if (res.code) {
-          CommonApi.login({ code: res.code }).then(data => {
-            Taro.setStorageSync('token', data.token)
-          })
-        } else {
-          console.log('登录失败！' + res.errMsg)
-        }
-      }
-    })
+
+  componentDidMount() {
+    console.log('app is componentDidMount');
+    this.getCarLen()
   }
   getCarLen() {
     ShoppingCarApi.shoppingCarList().then(data => {
@@ -110,18 +113,26 @@ class App extends Component<PropsType, {}> {
     })
   }
 
-  componentDidShow() { }
+  componentWillUnmount(){
+    console.log('componentWillUnmount');
+    
+  }
+  componentDidHide() {
+    console.log('componentDidHide');
+  }
 
-  componentDidHide() { }
-
-  componentDidCatchError() { }
+  componentDidCatchError() {
+    console.log('componentDidCatchError');
+  }
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
   render() {
+    console.log('render is running');
     return (
       <Provider store={store}>
         {this.props.children}
+        {/* <JTabBar /> */}
       </Provider>
     )
   }

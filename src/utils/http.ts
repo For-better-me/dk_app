@@ -9,7 +9,7 @@ interface optsType {
 let _http = function (opt: optsType):any {//封装请求
     const _promise = new Promise((resolve, reject) => {
         let defaultOpt = {
-            loading: false, // 是否显示Loading提示窗
+            loading: true, // 是否显示Loading提示窗
             method: 'POST', // 请求方法，必须大写！！
             data: {}, // 入参
             header: {
@@ -18,7 +18,7 @@ let _http = function (opt: optsType):any {//封装请求
         }
         // 合并
         opt = Object.assign({}, defaultOpt, opt)
-        opt.url = 'http://mwsz.tjitfw.com'+opt.url
+        opt.url = 'https://www.tjitfw.com'+opt.url
         let loading = opt.loading // 是否显示加载提示弹窗
         Taro.request({
             url: opt.url,
@@ -26,9 +26,9 @@ let _http = function (opt: optsType):any {//封装请求
             data: opt.data,
             header: opt.header,
             success: (res:any) => {
-                if (res.data.code == 10001) {
+                if (res.data.code == 1001) {
                     reject({
-                        code: 10001,
+                        code: 1001,
                         msg: opt.url + '接口需要token参数3，但系统中不存在token'
                     })
                 } else if (res.data.code == 0) {
@@ -55,10 +55,11 @@ let _http = function (opt: optsType):any {//封装请求
 
     return _promise.catch(err => {
         Taro.hideLoading()
-        if (err.code == 10001) {
+        if (err.code == 1001) {
             Taro.hideLoading()
-            console.log('err10001', err.msg)
-            // Taro.navigateTo({ url: '/pages/login/main' })
+            console.log('err1001', err.msg)
+            Taro.setStorageSync('token','')
+            // Taro.navigateTo({ url: '/pages/login/index' })
         }
         else if (err.code == -1) {
             Taro.showToast({
@@ -66,7 +67,7 @@ let _http = function (opt: optsType):any {//封装请求
                 icon: 'none',
                 duration: 2000
             })
-            console.log('非err10001', err.msg, opt.url)
+            console.log('非err1001', err.msg, opt.url)
         }
         return Promise.reject({
             code: err.code,

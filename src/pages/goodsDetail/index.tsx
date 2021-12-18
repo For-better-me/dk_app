@@ -1,5 +1,5 @@
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Text, Swiper, SwiperItem, Image, Button } from '@tarojs/components'
+import { View, Text, Swiper, SwiperItem, Image, Button, RichText } from '@tarojs/components'
 import './index.scss'
 import BtnEnjoy from '../../assets/img/btn-enjoy.png'
 import JInputNumber from '../../base/InputNumber'
@@ -16,12 +16,12 @@ type PropsType = {
   setCountCar: (num: number) => any,
 }
 @connect(({ reducer }) => ({
-  countCar:reducer.countCar
+  countCar: reducer.countCar
 }), (dispatch) => ({
   setCountCar(num: number) {
     dispatch(SetCountCar(num))
   },
-  
+
 
 }))
 export default class GoodsDetail extends Component<PropsType, StatesType> {
@@ -35,12 +35,26 @@ export default class GoodsDetail extends Component<PropsType, StatesType> {
 
   componentWillMount() { }
 
-  componentDidMount() {
+  componentDidShow() {
     this.getDetail()
+    if(!Number(this.$router.params.num) && this.$router.params.num != '0'){
+      this.initNum()
+    }
+  }
+  initNum() {
+    ShoppingCarApi.shoppingCarList().then(res => {
+      let goodsIDArr = res.goods_list.filter(el => el.goods_id == this.$router.params.id)
+      let num = 0
+      if (goodsIDArr.length > 0) {
+        num = goodsIDArr[0].goods_cart_number
+      }
+      this.setState({num})
+    })
   }
   getDetail() {
     let id: string = this.$router.params.id
     GoodsApi.getGoodsInfo({ id }).then(data => {
+      data.text = data.text.replace(/\<img/g,'<img style="width:100%;height:auto;display:block"')
       this.setState({ goodsInfo: data })
     })
   }
@@ -48,7 +62,7 @@ export default class GoodsDetail extends Component<PropsType, StatesType> {
     this.setState({ num })
   }
   addShoppingCar = () => {
-    if(this.state.num == 0){
+    if (this.state.num == 0) {
       Taro.showToast({
         title: '添加数量不为0',
         icon: 'none',
@@ -62,7 +76,7 @@ export default class GoodsDetail extends Component<PropsType, StatesType> {
       number: this.state.num,
     }
     ShoppingCarApi.shoppingCarAdd(data).then(res => {
-      this.props.setCountCar(this.props.countCar+data.number)
+      this.props.setCountCar(this.props.countCar + data.number)
       Taro.switchTab({ url: '/pages/shoppingCar/index' })
     })
   }
@@ -71,6 +85,13 @@ export default class GoodsDetail extends Component<PropsType, StatesType> {
       withShareTicket: true,
       showShareItems: ['wechatFriends', 'wechatMoment']
     })
+  }
+  onShareAppMessage() {
+    return {
+      title: this.state.goodsInfo.title || '每味十足',
+      path: '/pages/goodsDetail/index?id=' + this.$router.params.id,  // 自定义的分享路径，点击分享的卡片之后会跳转这里定义的路由
+      imageUrl: '' // 图片路径
+    };
   }
   render() {
     let { goodsInfo } = this.state
@@ -109,7 +130,11 @@ export default class GoodsDetail extends Component<PropsType, StatesType> {
               </View>
               <View className='goods_detail mar-t-10'>
                 <View className='f-28 color-3 bold title'>商品详情 DESCRIPTION</View>
+                <View className='pad-30 rich_box'>
+                  <RichText nodes={goodsInfo.text} />
+                </View>
               </View>
+
               <View className='block-fixed-b flex-lr flex-center pad_lr_30'>
                 <JInputNumber value={this.state.num} isHidden={false} changeNumber={this.changeNumber.bind(this)} />
                 <Button className='btn-car' onClick={this.addShoppingCar}>加入购物车</Button>

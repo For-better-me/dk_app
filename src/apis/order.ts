@@ -1,8 +1,15 @@
 import _http from '../utils/http'
 export default class OrderApi {
-    public static submitOrder(data: {}) {
+    public static getSubmitInfo(data: {}) {
         return _http({
             url: '/api/order/cartOrderGoodsList',
+            data,
+            loading:false
+        })
+    }
+    public static submitOrder(data: {}) {
+        return _http({
+            url: '/api/order/cartCreateOrder',
             data
         })
     }
@@ -32,13 +39,43 @@ export default class OrderApi {
     }
     public static addrUpdate(data: {}) {
         return _http({
-            url: '/api/Collectaddress/getInfo',
+            url: '/api/Collectaddress/updateInfo',
             data
         })
     }
     public static addrNew(data: {}) {
         return _http({
             url: '/api/Collectaddress/addInfo',
+            data
+        })
+    }
+    public static orderList(data) {
+        return _http({
+            url: '/api/order/getOrderlist',
+            data
+        })
+    }
+    public static orderCancel(data) {
+        return _http({
+            url: '/api/order/cancelOrder',
+            data
+        })
+    }
+    public static orderDel(data) {
+        return _http({
+            url: '/api/order/delInfo',
+            data
+        })
+    }
+    public static orderInfo(data) {
+        return _http({
+            url: '/api/order/getOrderInfo',
+            data
+        })
+    }
+    public static orderPay(data) {
+        return _http({
+            url: '/api/order/goPayment',
             data
         })
     }

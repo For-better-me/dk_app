@@ -1,0 +1,35 @@
+.about_us {
+    padding: 20px 30px;
+}
+
+.btn {
+    width: 180px;
+    height: 60px;
+    background: #F5F9FC;
+    border-radius: 30px;
+    font-size: 26px;
+    color: #333;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 25px;
+    line-height: 60px;
+    text-align: center;;
+    &.on {
+        background: linear-gradient(45deg, #10E6AC, #1CD4D4);
+        border-radius: 30px;
+        color: #fff;
+    }
+}
+
+.list {
+    margin-top: 20px;
+    image {
+        margin-top: 10px;
+        width: 165px;
+        height: 165px;
+        margin-right: 10px;
+        &:nth-of-type(4n) {
+            margin-right: 0;
+        }
+    }
+}

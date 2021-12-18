@@ -11,4 +11,21 @@ export default class GoodsApi {
             data
         })
     }
+    public static getSearchGoods(data) {
+        return _http({
+            url: '/api/Goods/getList',
+            data
+        })
+    }
+    public static getFocusList() {
+        return _http({
+            url: '/api/shop/getFocusList',
+        })
+    }
+    public static getShopInfo(data) {
+        return _http({
+            url: '/api/shop/getShopInfo',
+            data
+        })
+    }
 }

@@ -2,9 +2,11 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text, } from '@tarojs/components'
 import './index.scss'
 import UserApi from '../../apis/user'
+import NoData from '../../base/nodata'
+
 type StateType = {
   list: any[],
-  integralDesc:string
+  integralDesc: string
 }
 
 export default class IntegralList extends Component<{}, StateType> {
@@ -24,14 +26,13 @@ export default class IntegralList extends Component<{}, StateType> {
   init() {
     let data = { limit: this.limit, page: this.page }
     UserApi.IntegralLog(data).then(data => {
-      // 积分获得类型：1每日签到，2治疗签到，3购买商品，4商品退款，5积分兑换， 6抽奖扣除，7订单取消, 8分享获取
-      let arr = ['每日签到', '治疗签到', '购买商品', '商品退款', '积分兑换', '抽奖扣除', '订单取消', '分享获取',]
+      let arr = ['积分抵现金', '购买商品',]
       let list = data.integral_list.map((el, index) => {
-        el.desc = arr[index + 1]
+        el.desc = arr[el.type - 1]
         return el
       })
       list = this.state.list.concat(list)
-      this.setState({ list,integralDesc:data.integral_desc })
+      this.setState({ list, integralDesc: data.integral_desc })
     })
   }
   onReachBottom() {
@@ -43,6 +44,13 @@ export default class IntegralList extends Component<{}, StateType> {
       return
     }
     this.init()
+  }
+  onShareAppMessage() {
+    return {
+      title: "每味十足",
+      path: '/pages/index/index',  // 自定义的分享路径，点击分享的卡片之后会跳转这里定义的路由
+      imageUrl: '' // 图片路径
+    };
   }
   render() {
     let { integralDesc, list } = this.state
@@ -57,10 +65,13 @@ export default class IntegralList extends Component<{}, StateType> {
                   <Text className='f-30 color-3'>{el.desc}</Text>
                   <Text className='f-24 color-9 mar-t-20'>时间：{el.create_time}</Text>
                 </View>
-                <View className='f-30 color-3'>-{el.integral}</View>
+                <View className={el.type == 2 ? 'f-30 color-red' : 'f-30 color-3'}>{el.type == 2 ? '+' : '-'}{el.integral}</View>
               </View>
             )
           })
+        }
+        {
+          list.length == 0 ? <NoData tip='暂无积分记录' /> : null
         }
 
       </View>
